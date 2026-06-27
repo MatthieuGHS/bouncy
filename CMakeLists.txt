@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.3.4)
 project(BouncyBall)
 find_package(SFML 3 REQUIRED COMPONENTS Graphics Window System)
-add_executable(bouncyBall main.cpp)
+add_executable(bouncyBall main.cpp ball.cpp)
 target_link_libraries(bouncyBall SFML::Graphics SFML::Window SFML::System)
