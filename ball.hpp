@@ -5,9 +5,14 @@ class Ball
 {
   public:
     Ball(float radius, sf::Vector2f pos, sf::Vector2f v);
-    void update(sf::Vector2f, float);
+
+    void update(float);
     void draw(sf::RenderWindow &);
-    sf::Vector2f getVelocity();
+    void check(sf::RenderWindow &);
+
+    // getter
+    sf::Vector2f getPos();
+    sf::Vector2f getV();
 
   private:
     sf::CircleShape shape;
