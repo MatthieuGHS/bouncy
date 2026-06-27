@@ -1,4 +1,6 @@
 #include "ball.hpp"
+#include "constants.hpp"
+#include <cmath>
 
 Ball::Ball(float radius, sf::Vector2f pos, sf::Vector2f v)
     : radius(radius), pos(pos), v(v)
@@ -10,7 +12,9 @@ Ball::Ball(float radius, sf::Vector2f pos, sf::Vector2f v)
 
 void Ball::update(float dt)
 {
+    this->v.y += config::G * dt;
     this->pos += v * dt;
+    this->v *= std::pow(config::DRAG, dt);
     this->shape.setPosition(this->pos);
 }
 
@@ -43,7 +47,3 @@ void Ball::check(sf::RenderWindow &window)
         v.y = -v.y;
     }
 }
-
-sf::Vector2f Ball::getPos() { return pos; }
-
-sf::Vector2f Ball::getV() { return v; }

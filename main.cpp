@@ -5,7 +5,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode({900, 600}), "Bouncy Ball");
     sf::Clock clock;
-    Ball ball(70.f, {400.f, 300.f}, {400.f, 300.f});
+    Ball ball(70.f, {400.f, 300.f}, {200.f, 200.f});
 
     while (window.isOpen())
     {

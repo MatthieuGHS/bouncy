@@ -10,10 +10,6 @@ class Ball
     void draw(sf::RenderWindow &);
     void check(sf::RenderWindow &);
 
-    // getter
-    sf::Vector2f getPos();
-    sf::Vector2f getV();
-
   private:
     sf::CircleShape shape;
     float radius;
