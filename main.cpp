@@ -1,11 +1,14 @@
 #include "ball.hpp"
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({900, 600}), "Bouncy Ball");
     sf::Clock clock;
-    Ball ball(70.f, {400.f, 300.f}, {200.f, 200.f});
+    std::vector<Ball> balls;
+    // balls.emplace_back(70.f, sf::Vector2f{400.f, 300.f}, sf::Vector2f{200.f,
+    // 200.f});
 
     while (window.isOpen())
     {
@@ -15,14 +18,26 @@ int main()
             {
                 window.close();
             }
+            if (const auto *mouseButtonPressed =
+                    event->getIf<sf::Event::MouseButtonPressed>())
+            {
+                if (mouseButtonPressed->button == sf::Mouse::Button::Left)
+                {
+                    balls.emplace_back(
+                        70.f, sf::Vector2f{mouseButtonPressed->position},
+                        sf::Vector2f{200.f, 200.f});
+                }
+            }
         }
         sf::Time dt = clock.restart();
         float seconds = dt.asSeconds();
-
-        ball.update(seconds);
-        ball.check(window);
         window.clear();
-        ball.draw(window);
+        for (Ball &ball : balls)
+        {
+            ball.update(seconds);
+            ball.check(window);
+            ball.draw(window);
+        }
         window.display();
     }
     return 0;
