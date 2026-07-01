@@ -24,7 +24,7 @@ int main()
                 if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                 {
                     balls.emplace_back(
-                        70.f, sf::Vector2f{mouseButtonPressed->position},
+                        10.f, sf::Vector2f{mouseButtonPressed->position},
                         sf::Vector2f{200.f, 200.f});
                 }
             }
@@ -36,6 +36,13 @@ int main()
         {
             ball.update(seconds);
             ball.check(window);
+            for (Ball &oball : balls)
+            {
+                if (&oball != &ball)
+                {
+                    ball.checkCollision(oball.getPos(), oball.getRad());
+                }
+            }
             ball.draw(window);
         }
         window.display();

@@ -1,6 +1,7 @@
 #include "ball.hpp"
 #include "constants.hpp"
 #include <cmath>
+#include <iostream>
 
 Ball::Ball(float radius, sf::Vector2f pos, sf::Vector2f v)
     : radius(radius), pos(pos), v(v)
@@ -9,6 +10,10 @@ Ball::Ball(float radius, sf::Vector2f pos, sf::Vector2f v)
     shape.setPosition(pos);
     shape.setFillColor(sf::Color::White);
 }
+
+sf::Vector2f Ball::getPos() { return this->pos; }
+
+float Ball::getRad() { return this->radius; }
 
 void Ball::update(float dt)
 {
@@ -45,5 +50,14 @@ void Ball::check(sf::RenderWindow &window)
     {
         pos.y = 0;
         v.y = -v.y;
+    }
+}
+
+void Ball::checkCollision(sf::Vector2f opos, float orad)
+{
+    if (std::pow(this->pos.x - opos.x, 2) + std::pow(this->pos.y - opos.y, 2) <
+        std::pow(this->radius + orad, 2))
+    {
+        std::cout << "Collision !" << std::endl;
     }
 }
