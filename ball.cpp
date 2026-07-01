@@ -53,11 +53,12 @@ void Ball::check(sf::RenderWindow &window)
     }
 }
 
-void Ball::checkCollision(sf::Vector2f opos, float orad)
+void Ball::resolveCollision(Ball &other)
 {
-    if (std::pow(this->pos.x - opos.x, 2) + std::pow(this->pos.y - opos.y, 2) <
-        std::pow(this->radius + orad, 2))
+    if (std::pow(this->pos.x - other.pos.x, 2) +
+            std::pow(this->pos.y - other.pos.y, 2) <
+        std::pow(this->radius + other.radius, 2))
     {
-        std::cout << "Collision !" << std::endl;
+        std::cout << "Collision !";
     }
 }

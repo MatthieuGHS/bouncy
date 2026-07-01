@@ -36,11 +36,11 @@ int main()
         {
             ball.update(seconds);
             ball.check(window);
-            for (Ball &oball : balls)
+            for (Ball &other : balls)
             {
-                if (&oball != &ball)
+                if (&other != &ball)
                 {
-                    ball.checkCollision(oball.getPos(), oball.getRad());
+                    ball.resolveCollision(other);
                 }
             }
             ball.draw(window);

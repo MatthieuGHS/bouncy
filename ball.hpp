@@ -9,7 +9,7 @@ class Ball
     void update(float);
     void draw(sf::RenderWindow &);
     void check(sf::RenderWindow &);
-    void checkCollision(sf::Vector2f, float);
+    void resolveCollision(Ball &);
 
     sf::Vector2f getPos();
     float getRad();
